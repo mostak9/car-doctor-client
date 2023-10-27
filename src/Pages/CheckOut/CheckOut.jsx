@@ -19,7 +19,7 @@ const CheckOut = () => {
         const price = form.price.value;
         const checkOut = {name, email, service, date, price, img};
         console.log(checkOut);
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://car-doctor-server-930k66rat-mostak-ahmeds-projects.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

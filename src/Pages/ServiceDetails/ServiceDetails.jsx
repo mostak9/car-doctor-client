@@ -9,7 +9,7 @@ const ServiceDetails = () => {
   const { img, title, description, facility, _id, price } = useLoaderData();
   const [services, setServices] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/services")
+    fetch("https://car-doctor-server-930k66rat-mostak-ahmeds-projects.vercel.app/services")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);

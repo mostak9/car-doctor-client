@@ -8,7 +8,7 @@ const Bookings = () => {
   const [bookings, setBookings] = useState([]);
   const [state, setState] = useState(false);
   useEffect(() => {
-    fetch(`http://localhost:5000/bookings?email=${user?.email}`)
+    fetch(`https://car-doctor-server-930k66rat-mostak-ahmeds-projects.vercel.app/bookings?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setBookings(data));
   }, [user, state]);
@@ -22,7 +22,7 @@ const Bookings = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/bookings/${_id}`, {
+        fetch(`https://car-doctor-server-930k66rat-mostak-ahmeds-projects.vercel.app/bookings/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -41,7 +41,7 @@ const Bookings = () => {
   };
 
   const handleState = _id => {
-    fetch(`http://localhost:5000/bookings/${_id}`,{
+    fetch(`https://car-doctor-server-930k66rat-mostak-ahmeds-projects.vercel.app/bookings/${_id}`,{
       method: "PATCH",
       headers: {
         'content-type' : 'application/json'

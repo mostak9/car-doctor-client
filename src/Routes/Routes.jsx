@@ -10,39 +10,54 @@ import Bookings from "../Pages/Bookings/Bookings";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
-    {
-        path: '/',
-        errorElement: <ErrorPage/>,
-        element: <MainLayout/>,
-        children: [
-            {
-                path: '/',
-                element: <Home/>
-            },
-            {
-                path: '/login',
-                element: <Login/>
-            },
-            {
-                path: '/register',
-                element: <Register/>
-            },
-            {
-                path: '/services/:id',
-                element:<PrivateRoute> <CheckOut/></PrivateRoute>,
-                loader: ({params}) =>  fetch(`http://localhost:5000/services/${params.id}`)
-            },
-            {
-                path: '/serviceDetails/:id',
-                element: <PrivateRoute><ServiceDetails/></PrivateRoute>,
-                loader: ({params}) =>  fetch(`http://localhost:5000/services/${params.id}`)
-            },
-            {
-                path: '/myBooking',
-                element: <PrivateRoute><Bookings/></PrivateRoute>
-            }
-        ]
-    }
-])
+  {
+    path: "/",
+    errorElement: <ErrorPage />,
+    element: <MainLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/services/:id",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <CheckOut />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`https://car-doctor-server-930k66rat-mostak-ahmeds-projects.vercel.app/services/${params.id}`),
+      },
+      {
+        path: "/serviceDetails/:id",
+        element: (
+          <PrivateRoute>
+            <ServiceDetails />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`https://car-doctor-server-930k66rat-mostak-ahmeds-projects.vercel.app/services/${params.id}`),
+      },
+      {
+        path: "/myBooking",
+        element: (
+          <PrivateRoute>
+            <Bookings />
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+]);
 
 export default router;
