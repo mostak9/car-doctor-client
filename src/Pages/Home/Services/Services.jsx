@@ -1,15 +1,34 @@
 import { useEffect, useState } from "react";
 import Service from "./Service";
 import { Spinner } from "@material-tailwind/react";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 
 const Services = () => {
-    const [services, setServices] = useState([]);
-    useEffect(()  => {
-        fetch('https://car-doctor-server-930k66rat-mostak-ahmeds-projects.vercel.app/services')
-        .then(res =>  res.json())
-        .then(data => setServices(data))
-    }, [])
+    // const [services, setServices] = useState([]);
+    const axiosSecure = useAxiosSecure();
+
+
+    const {data: services, isLoading} = useQuery({
+        queryKey: ['services'],
+        queryFn: async ()  => {
+            const res = await axiosSecure.get('/services')
+            return res.data;
+        }
+    })
+
+    if(isLoading)  return <div className="flex items-center justify-center min-h-screen"><progress className="progress w-56"></progress></div>
+
+
+    // useEffect(()  => {
+    //     fetch('http://localhost:5000/services')
+    //     .then(res =>  res.json())
+    //     .then(data => {
+    //         setServices(data)
+    //         console.log(data);
+    //     })
+    // }, [])
     return (
         <div className="mt-10">
             <div className="text-center space-y-3 mb-5">

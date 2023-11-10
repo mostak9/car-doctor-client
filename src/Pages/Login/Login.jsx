@@ -3,6 +3,7 @@ import img from '../../assets/images/login/login.svg'
 import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import swal from 'sweetalert';
+import axios from 'axios';
 
 const Login = () => {
   const {userLogin} = useContext(AuthContext);
@@ -14,10 +15,10 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+        // console.log(email, password);
         userLogin(email, password)
         .then(res => {
-          console.log(res.user);
+          // console.log(res.user);
           navigate(location.state || '/');
           swal({
             title: "Success!",
